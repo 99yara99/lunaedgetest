@@ -55,6 +55,7 @@ const RecipeCard = ({
   };
 
   const dispatch = useAppDispatch();
+  const categories = ['Всі', 'Перші страви', 'Мясо', 'Десерти'];
   const onClickSaveRecipe = () => {
     const recipe = {
       title,
@@ -145,7 +146,7 @@ const RecipeCard = ({
           <FavoriteIcon />
         </IconButton>
         <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <Typography fontSize={12}>{category}</Typography>
+          <Typography fontSize={12}>{categories[Number(category)]}</Typography>
           <ClassIcon />
         </div>
 

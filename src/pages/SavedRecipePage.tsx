@@ -7,12 +7,7 @@ import { deleteRecipe } from '../redux/savedRecipeReducer';
 const RecipePage = () => {
   const { saved } = useAppSelector((state) => state.saved);
   const dispatch = useAppDispatch();
-  console.log(saved);
 
-  //   const onClickDeleteRecipe = (id: number) => {
-  //     console.log(id);
-  //     dispatch(deleteRecipe(id));
-  //   };
   return (
     <div className="card-main">
       {saved.map((card, index) => (
