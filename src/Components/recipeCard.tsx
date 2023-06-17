@@ -14,7 +14,7 @@ import ClassIcon from '@mui/icons-material/Class';
 import { Recipe } from '../types';
 import { useState } from 'react';
 import { saveRecipe } from '../redux/savedRecipeReducer';
-import { useAppDispatch } from '../hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -55,6 +55,7 @@ const RecipeCard = ({
   };
 
   const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.user);
   const categories = ['Всі', 'Перші страви', 'Мясо', 'Десерти'];
   const onClickSaveRecipe = () => {
     const recipe = {
@@ -142,9 +143,12 @@ const RecipeCard = ({
         }}
         disableSpacing
       >
-        <IconButton onClick={onClickSaveRecipe} aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+        {isAuth && (
+          <IconButton onClick={onClickSaveRecipe} aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+        )}
+
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography fontSize={12}>{categories[Number(category)]}</Typography>
           <ClassIcon />

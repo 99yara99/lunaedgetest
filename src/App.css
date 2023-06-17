@@ -1,15 +1,16 @@
 .main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .recipe {
   width: 90%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
 }
 .sidebar {
   width: 10%;
+  display: flex;
+  flex-direction: column;
 }
 .header {
   height: 80px;
@@ -19,4 +20,9 @@
 }
 .header span {
   margin-left: 5px;
+}
+.sidebar-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
