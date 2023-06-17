@@ -1,5 +1,13 @@
-.recipe-main {
+.main {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+}
+.recipe-main {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.sidebar {
+  width: 10%;
 }

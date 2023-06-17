@@ -10,8 +10,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccessTimeSharpIcon from '@mui/icons-material/AccessTimeSharp';
 import GradeSharpIcon from '@mui/icons-material/GradeSharp';
+import ClassIcon from '@mui/icons-material/Class';
 import { Recipe } from '../types';
 import { useState } from 'react';
+import { saveRecipe } from '../redux/savedRecipeReducer';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -36,6 +39,7 @@ const RecipeCard = ({
   category,
   cookingtime,
   rating,
+  id,
 }: Recipe) => {
   const [showIngredients, setShowIngredients] = useState(false);
   const handleExpandClickIngredients = () => {
@@ -50,6 +54,21 @@ const RecipeCard = ({
     setShowInstructions(!showInstructions);
   };
 
+  const dispatch = useAppDispatch();
+  const onClickSaveRecipe = () => {
+    const recipe = {
+      title,
+      description,
+      ingredients,
+      instructions,
+      img,
+      category,
+      cookingtime,
+      rating,
+      id,
+    };
+    dispatch(saveRecipe(recipe));
+  };
   return (
     <Card sx={{ width: '300px' }}>
       <CardMedia component="img" height="194" image={img} alt="Food image" />
@@ -122,9 +141,14 @@ const RecipeCard = ({
         }}
         disableSpacing
       >
-        <IconButton aria-label="add to favorites">
+        <IconButton onClick={onClickSaveRecipe} aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <Typography fontSize={12}>{category}</Typography>
+          <ClassIcon />
+        </div>
+
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <Typography>{cookingtime}хв</Typography>
           <AccessTimeSharpIcon />
